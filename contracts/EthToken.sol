@@ -1,4 +1,4 @@
-pragma solidity ^0.4.4;
+pragma solidity ^0.4.6;
 
 /**
 @title StandardToken
@@ -89,27 +89,6 @@ contract HumanStandardToken is StandardToken {
     uint8 public decimals; //How many decimals to show. ie. There could 1000 base units with 3 decimals. Meaning 0.980 SBX = 980 base units. It's like comparing 1 wei to 1 ether.
     string public symbol; //An identifier: eg SBX
     string public version; //human 0.1 standard. Just an arbitrary versioning scheme.
-
-    /**
-    @notice Approves and then calls the receiving contract
-    @param _spender The address of the destination contract account
-    @param _value The number of tokens to be transferred
-    @param _extraData Signature to sign the transaction with
-    @return success Whether the transfer is successful
-    */
-    function approveAndCall(address _spender, uint256 _value, bytes _extraData) returns(bool success) {
-        allowed[msg.sender][_spender] = _value;
-        Approval(msg.sender, _spender, _value);
-
-        if(!tokenRecipient(_spender).receiveApproval(msg.sender, _value, this, _extraData)) {
-            throw;
-        }
-        return true;
-    }
-}
-
-contract tokenRecipient {
-    function receiveApproval(address _from, uint256 _value, address _token, bytes _extraData) returns(bool success);
 }
 
 /**
@@ -124,10 +103,10 @@ contract EthToken is HumanStandardToken {
     function EthToken() {
         balances[msg.sender] = 0;
         totalSupply = 0;
-        name = 'eth';
+        name = 'ETH Token';
         decimals = 18;
         symbol = 'Ξ';
-        version = '0.1';
+        version = '0.2';
     }
 
     event LogCreateToken(address indexed _from, uint256 _value);
@@ -172,7 +151,6 @@ contract EthToken is HumanStandardToken {
             } else {
                 throw;
             }
-
         } else {
             throw;
         }
