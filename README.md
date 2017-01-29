@@ -17,10 +17,26 @@ For more details on token standard, you can start at https://tokenstandard.codet
 
 #### Functions in addition to standard token
 
-##### `createToken()`
+`createToken()`
 
 [EthToken.sol:115-131](https://github.com/codetract/ethToken/blob/master/contracts/EthToken.sol#L115-L131)
 
-##### `redeemToken(uint256 _tokens)`
+`redeemToken(uint256 _tokens)`
 
 [EthToken.sol:133-157](https://github.com/codetract/ethToken/blob/master/contracts/EthToken.sol#L133-L157)
+
+#### Test instructions
+
+[truffle](https://github.com/ConsenSys/truffle) and [testrpc](https://github.com/ethereumjs/testrpc) are required and can be installed using
+```
+$ npm install -g truffle
+$ npm install -g ethereumjs-testrpc
+```
+Run testrpc
+```
+$ testrpc
+```
+Then run tests
+```
+$ truffle test
+```
